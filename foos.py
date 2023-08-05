@@ -78,7 +78,7 @@ def read_file_to_string(directory, filename):
 def page_to_tournaments(page_content):
     """Funkcija poišče posamezne turnirje, ki se nahajajo v spletni strani in
     vrne seznam turnirjev."""
-    vzorec = r'<tr id="tnid8863" class='views-row views-row-42 views-row-even notpassed  livenow '>' # problemi z narekovaji in id
+    vzorec = r'<tr id="tnid\d+" class='views-row views-row-\d+ views-row-even notpassed  livenow '>' # problemi z narekovaji
     '<article class="entity-body cf">.*?</article>'
     return re.findall(vzorec, page_content, flags = re.DOTALL)
 
