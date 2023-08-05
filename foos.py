@@ -23,13 +23,15 @@ def download_url_to_string(url):
     """
     try:
         # del kode, ki morda sproži napako
-        page_content = 'TODO'
-    except 'TODO':
+        headers = {'User-Agent': 'Chrome/111.0.5563.111'}
+        page_content = requests.get(url, headers=headers)
+    except requests.exceptions.RequestException:
         # koda, ki se izvede pri napaki
         # dovolj je če izpišemo opozorilo in prekinemo izvajanje funkcije
-        raise NotImplementedError()
+        print('Spletna stran je trenutno nedosegljiva')
+        return None
     # nadaljujemo s kodo če ni prišlo do napake
-    raise NotImplementedError()
+    return page_content.text
 
 
 def save_string_to_file(text, directory, filename):
@@ -50,7 +52,8 @@ def save_string_to_file(text, directory, filename):
 def save_frontpage(page, directory, filename):
     """Funkcija shrani vsebino spletne strani na naslovu "page" v datoteko
     "directory"/"filename"."""
-    raise NotImplementedError()
+    text = download_url_to_string(page)
+    save_string_to_file(text, directory, filename)
 
 
 ###############################################################################
@@ -60,7 +63,10 @@ def save_frontpage(page, directory, filename):
 
 def read_file_to_string(directory, filename):
     """Funkcija vrne celotno vsebino datoteke "directory"/"filename" kot niz."""
-    raise NotImplementedError()
+    path = os.path.join(directory, filename)
+    with open(path, 'r', encoding='utf-8') as file_in:
+        text = file_in.read()
+    return text
 
 
 # Definirajte funkcijo, ki sprejme niz, ki predstavlja vsebino spletne strani,
@@ -69,20 +75,33 @@ def read_file_to_string(directory, filename):
 # oglasa. Funkcija naj vrne seznam nizov.
 
 
-def page_to_ads(page_content):
-    """Funkcija poišče posamezne oglase, ki se nahajajo v spletni strani in
-    vrne seznam oglasov."""
-    raise NotImplementedError()
+def page_to_tournaments(page_content):
+    """Funkcija poišče posamezne turnirje, ki se nahajajo v spletni strani in
+    vrne seznam turnirjev."""
+    vzorec = r'<article class="entity-body cf">.*?</article>'
+    return re.findall(vzorec, page_content, flags = re.DOTALL)
 
 
-# Definirajte funkcijo, ki sprejme niz, ki predstavlja oglas, in izlušči
+# Definirajte funkcijo, ki sprejme niz, ki predstavlja turnir, in izlušči
 # podatke o imenu, lokaciji, datumu objave in ceni v oglasu.
 
 
 def get_dict_from_ad_block(block):
     """Funkcija iz niza za posamezen oglasni blok izlušči podatke o imenu, ceni
     in opisu ter vrne slovar, ki vsebuje ustrezne podatke."""
-    raise NotImplementedError()
+    ime = re.search(r'<h3 .*"><a .*>(.*)</a></h3>', block)
+    lokacija = re.search(r'Lokacija: </span>(.*)<br />', block)
+    datum = re.search(r'<time .*>(.*).</time>', block)
+    cena = re.search(r'<strong class="price price--hrk">(.*) </strong>', block, flags=re.DOTALL)
+    if ime == None or lokacija == None or datum == None or cena == None:
+        return None
+    elif 'Cena po dogovoru' in cena.group(1):
+        cena = 'Cena po dogovoru'
+    else:
+        cena = re.search(r'(\d+)&nbsp;<span class="currency">(.+)</span>', cena.group(1))
+        cena = cena.group(1) + ' ' + cena.group(2)
+    return {'ime': ime.group(1), 'lokacija': lokacija.group(1), 'datum': datum.group(1), 'cena': cena}
+
 
 
 # Definirajte funkcijo, ki sprejme ime in lokacijo datoteke, ki vsebuje
@@ -93,7 +112,10 @@ def get_dict_from_ad_block(block):
 def ads_from_file(filename, directory):
     """Funkcija prebere podatke v datoteki "directory"/"filename" in jih
     pretvori (razčleni) v pripadajoč seznam slovarjev za vsak oglas posebej."""
-    raise NotImplementedError()
+    text = read_file_to_string(directory, filename)
+    blocks = page_to_ads(text)
+    ads = [get_dict_from_ad_block(block) for block in blocks]
+    return [ad for ad in ads if ad != None]
 
 
 ###############################################################################
@@ -121,7 +143,7 @@ def write_csv(fieldnames, rows, directory, filename):
 # stolpce [fieldnames] pridobite iz slovarjev.
 
 
-def write_cat_ads_to_csv(ads, directory, filename):
+def write_ctournaments_to_csv(ads, directory, filename):
     """Funkcija vse podatke iz parametra "ads" zapiše v csv datoteko podano s
     parametroma "directory"/"filename". Funkcija predpostavi, da so ključi vseh
     slovarjev parametra ads enaki in je seznam ads neprazen."""
@@ -130,7 +152,7 @@ def write_cat_ads_to_csv(ads, directory, filename):
     # Prednost je v tem, da ga lahko pod določenimi pogoji izklopimo v
     # produkcijskem okolju
     assert ads and (all(j.keys() == ads[0].keys() for j in ads))
-    raise NotImplementedError()
+    write_csv(ads[0].keys(), ads, directory, filename)
 
 
 # Celoten program poženemo v glavni funkciji
@@ -141,20 +163,22 @@ def main(redownload=True, reparse=True):
     2. Lokalno html datoteko pretvori v lepšo predstavitev podatkov
     3. Podatke shrani v csv datoteko
     """
+
+    if redownload:
     # Najprej v lokalno datoteko shranimo glavno stran
-
+        save_frontpage(foos_frontpage_url, foos_directory, frontpage_filename)
+    if reparse:
     # Iz lokalne (html) datoteke preberemo podatke
-
     # Podatke preberemo v lepšo obliko (seznam slovarjev)
-
+        tournaments = ads_from_file(frontpage_filename, foos_directory)
     # Podatke shranimo v csv datoteko
-
+        write_ctournaments_to_csv(tournaments, foos_directory, csv_filename)
     # Dodatno: S pomočjo parametrov funkcije main omogoči nadzor, ali se
     # celotna spletna stran ob vsakem zagon prenese (četudi že obstaja)
     # in enako za pretvorbo
 
-    raise NotImplementedError()
+    
 
 
 if __name__ == '__main__':
-    main()
+    main(False)
