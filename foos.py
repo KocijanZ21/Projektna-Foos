@@ -7,15 +7,10 @@ import re
 # Najprej definirajmo nekaj pomožnih orodij za pridobivanje podatkov s spleta.
 ###############################################################################
 
-# definirajte URL glavne strani turnirjev v organizaciji ITSF
-foos_frontpage_url = 'https://www.tablesoccer.org/tournaments'
 # mapa, v katero bomo shranili podatke
 foos_directory = 'foos'
-# ime datoteke v katero bomo shranili glavno stran
-frontpage_filename = 'itsf_2023.html'
 # ime CSV datoteke v katero bomo shranili podatke
-csv_filename = 'foos23.csv'
-
+csv_filename = 'foos.csv'
 
 def download_url_to_string(url):
     """Funkcija kot argument sprejme niz in poskusi vrniti vsebino te spletne
@@ -172,14 +167,26 @@ def main(redownload=True, reparse=True):
     """
 
     if redownload:
+        for leto in range(2004, 2024):        
+            # definirajte URL glavne strani turnirjev v organizaciji ITSF
+            foos_frontpage_url = f'https://www.tablesoccer.org/tournaments?sort_by=field_date_value&sort_order=ASC&field_tour_value={leto}'
+            
+            # ime datoteke v katero bomo shranili glavno stran
+            frontpage_filename = f'itsf_{leto}.html'
+            
+
     # Najprej v lokalno datoteko shranimo glavno stran
-        save_frontpage(foos_frontpage_url, foos_directory, frontpage_filename)
+            save_frontpage(foos_frontpage_url, foos_directory, frontpage_filename)
     if reparse:
     # Iz lokalne (html) datoteke preberemo podatke
     # Podatke preberemo v lepšo obliko (seznam slovarjev)
-        tournamentss = tournaments_from_file(frontpage_filename, foos_directory)
+        alltournaments = []
+        for leto in range(2004,2024):
+            frontpage_filename = f'itsf_{leto}.html'
+            tournamentss = tournaments_from_file(frontpage_filename, foos_directory)
+            alltournaments.extend(tournamentss)
     # Podatke shranimo v csv datoteko
-        write_ctournaments_to_csv(tournamentss, foos_directory, csv_filename)
+        write_ctournaments_to_csv(alltournaments, foos_directory, csv_filename)
     # Dodatno: S pomočjo parametrov funkcije main omogoči nadzor, ali se
     # celotna spletna stran ob vsakem zagon prenese (četudi že obstaja)
     # in enako za pretvorbo
@@ -188,4 +195,4 @@ def main(redownload=True, reparse=True):
 
 
 if __name__ == '__main__':
-    main(False)
+    main(True)
