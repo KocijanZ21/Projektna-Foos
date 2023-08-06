@@ -89,20 +89,15 @@ def get_dict_from_tournament(block):
     drzava = re.search(r'<td style="cursor: pointer;" onclick="window\.location =\'.*\'"><img src="\.\./members/flags/png/.*\.png"/><br>(.*)</td>', block)
     leto = re.search(r'<td><span.*</span></br>.*?(\d*)</td>', block)
     rang = re.search(r'<td align="center"><div class="category_tour" id="catour\d*">(.*?)</div>.*</td>', block)
-    miza = re.search(r'<td id="img_tour".*><img src="/sites/default/files/images/ticons/(table_\d+).png"></td>', block)
+    st_mize = re.search(r'<td id="img_tour".*><img src="/sites/default/files/images/ticons/(table_\d+).png"></td>', block).group(1)
 #    cena = re.search(r'<strong class="price price--hrk">(.*) </strong>', block, flags=re.DOTALL)
-    
-    
-    
-    
-#    if ime == None or drzava == None or leto == None or cena == None:
-#        return None
-#    elif 'Cena po dogovoru' in cena.group(1):
-#        cena = 'Cena po dogovoru'
-#    else:
-#        cena = re.search(r'(\d+)&nbsp;<span class="currency">(.+)</span>', cena.group(1))
-#        cena = cena.group(1) + ' ' + cena.group(2)
-    return {'ime': ime.group(1), 'drzava': drzava.group(1), 'leto': leto.group(1), 'rang': rang.group(1), 'miza': miza.group(1)}
+    dictionary = {'table_16': 'Bonzini', 'table_17': 'Garlando', 'table_18': 'Roberto Sport', 'table_19': 'Rosengart', 
+    'table_20': 'Topper', 'table_21': 'Tecball', 'table_22': 'Tornado', 'table_23': 'Multitable', 'table_25': 'Euro Soccer',
+    'table_26': 'Undefined', 'table_27': 'Sardi', 'table_28': 'Leonhart', 'table_29': 'Fireball', 'table_81': 'Warrior',
+    'table_104': 'Metegol Continental', 'table_116': 'Jupiter', 'table_117': 'Supra', 'table_127': 'Guardian', 'table_128': 'El Cotorro', 'table_129': 'Tecno', 'table_130': 'Ullrich Sport', 'table_131': 'Beast'}
+    miza = dictionary[st_mize]
+   
+    return {'ime': ime.group(1), 'drzava': drzava.group(1), 'leto': leto.group(1), 'rang': rang.group(1), 'miza': miza}
 
 
 
@@ -195,4 +190,4 @@ def main(redownload=True, reparse=True):
 
 
 if __name__ == '__main__':
-    main(True)
+    main(False)
