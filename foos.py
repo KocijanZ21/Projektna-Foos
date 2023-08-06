@@ -78,7 +78,7 @@ def read_file_to_string(directory, filename):
 def page_to_tournaments(page_content):
     """Funkcija poišče posamezne turnirje, ki se nahajajo v spletni strani in
     vrne seznam turnirjev."""
-    vzorec = r'<tr id=\"tnid\d+\" class=\'views-row views-row-\d+ views-row-(even|even) (notpassed|livenow)? livenow \'>.*?</tr>' 
+    vzorec = r'<tr id="tnid\d+?" class=\'views-row .*?>.*?</tr>' 
     #'<article class="entity-body cf">.*?</article>'
     return re.findall(vzorec, page_content, flags = re.DOTALL)
 
@@ -91,23 +91,23 @@ def get_dict_from_tournament(block):
     """Funkcija iz niza za posamezen turnir izlušči podatke o imenu, času, državi, rangu
     in mizi ter vrne slovar, ki vsebuje ustrezne podatke."""
     ime = re.search(r'<td id="play_tour" style="cursor: default;">(.*)</td>', block)
-    drzava = re.search(r'<td style="cursor: pointer;" onclick="window\.location =\'/page/.*\'"><img src="\.\./members/flags/png/.*\.png"/><br>(.*)</td>', block)
-    cas = re.search(r'<td><span>.*</span></br>(.*)</td>', block)
-    rang = re.search(r'<td align="center"><div class="category_tour" id="catour\d*">(.*)</div>.*</td>', block)
+    drzava = re.search(r'<td style="cursor: pointer;" onclick="window\.location =\'.*\'"><img src="\.\./members/flags/png/.*\.png"/><br>(.*)</td>', block)
+    leto = re.search(r'<td><span.*</span></br>.*?(\d*)</td>', block)
+    rang = re.search(r'<td align="center"><div class="category_tour" id="catour\d*">(.*?)</div>.*</td>', block)
     miza = re.search(r'<td id="img_tour".*><img src="/sites/default/files/images/ticons/(table_\d+).png"></td>', block)
 #    cena = re.search(r'<strong class="price price--hrk">(.*) </strong>', block, flags=re.DOTALL)
     
     
     
     
-#    if ime == None or drzava == None or cas == None or cena == None:
+#    if ime == None or drzava == None or leto == None or cena == None:
 #        return None
 #    elif 'Cena po dogovoru' in cena.group(1):
 #        cena = 'Cena po dogovoru'
 #    else:
 #        cena = re.search(r'(\d+)&nbsp;<span class="currency">(.+)</span>', cena.group(1))
 #        cena = cena.group(1) + ' ' + cena.group(2)
-    return {'ime': ime.group(1), 'drzava': drzava.group(1), 'cas': cas.group(1), 'rang': rang.group(1), 'miza': miza.group(1)}
+    return {'ime': ime.group(1), 'drzava': drzava.group(1), 'leto': leto.group(1), 'rang': rang.group(1), 'miza': miza.group(1)}
 
 
 
@@ -177,9 +177,9 @@ def main(redownload=True, reparse=True):
     if reparse:
     # Iz lokalne (html) datoteke preberemo podatke
     # Podatke preberemo v lepšo obliko (seznam slovarjev)
-        tournaments = tournaments_from_file(frontpage_filename, foos_directory)
+        tournamentss = tournaments_from_file(frontpage_filename, foos_directory)
     # Podatke shranimo v csv datoteko
-        write_ctournaments_to_csv(tournaments, foos_directory, csv_filename)
+        write_ctournaments_to_csv(tournamentss, foos_directory, csv_filename)
     # Dodatno: S pomočjo parametrov funkcije main omogoči nadzor, ali se
     # celotna spletna stran ob vsakem zagon prenese (četudi že obstaja)
     # in enako za pretvorbo
