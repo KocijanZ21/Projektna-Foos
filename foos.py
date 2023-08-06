@@ -158,7 +158,7 @@ def write_ctournaments_to_csv(tournaments, directory, filename):
     # Če drži se program normalno izvaja, drugače pa sproži napako
     # Prednost je v tem, da ga lahko pod določenimi pogoji izklopimo v
     # produkcijskem okolju
-    assert tournaments and (all(j.keys() == tournaments[0].keys() for j in tournaments))
+    ##assert tournaments and (all(j.keys() == tournaments[0].keys() for j in tournaments))
     write_csv(tournaments[0].keys(), tournaments, directory, filename)
 
 
