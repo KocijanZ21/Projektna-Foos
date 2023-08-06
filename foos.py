@@ -75,10 +75,10 @@ def read_file_to_string(directory, filename):
 # oglasa. Funkcija naj vrne seznam nizov.
 
 
-def page_to_tournaments(page_content):
+def age_to_tournaments(page_content):
     """Funkcija poišče posamezne turnirje, ki se nahajajo v spletni strani in
     vrne seznam turnirjev."""
-    vzorec = r'<tr id="tnid\d+" class='views-row views-row-\d+ views-row-even notpassed  livenow '>' # problemi z narekovaji
+    vzorec = r'<tr id=\"tnid\d+\" class=\'views-row views-row-\d+ views-row-(even|even) (notpassed|livenow)?  livenow \'>' 
     '<article class="entity-body cf">.*?</article>'
     return re.findall(vzorec, page_content, flags = re.DOTALL)
 
