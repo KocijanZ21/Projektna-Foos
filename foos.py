@@ -88,7 +88,7 @@ def get_dict_from_tournament(block):
     ime = re.search(r'<td id="play_tour" style="cursor: default;">(.*)</td>', block)
     drzava = re.search(r'<td style="cursor: pointer;" onclick="window\.location =\'.*\'"><img src="\.\./members/flags/png/.*\.png"/><br>(.*)</td>', block)
     leto = re.search(r'<td><span.*</span></br>.*?(\d*)</td>', block)
-    rang = re.search(r'<td align="center"><div class="category_tour" id="catour\d*">(.*?)</div>.*</td>', block)
+    rang = re.search(r'<td align="center"><div class="category_tour" id="catour\d*">(.*?)</div>.*</td>', block).group(1)
     st_mize = re.search(r'<td id="img_tour".*><img src="/sites/default/files/images/ticons/(table_\d+).png"></td>', block).group(1)
 #    cena = re.search(r'<strong class="price price--hrk">(.*) </strong>', block, flags=re.DOTALL)
     dictionary = {'table_16': 'Bonzini', 'table_17': 'Garlando', 'table_18': 'Roberto Sport', 'table_19': 'Rosengart', 
@@ -96,8 +96,10 @@ def get_dict_from_tournament(block):
     'table_26': 'Undefined', 'table_27': 'Sardi', 'table_28': 'Leonhart', 'table_29': 'Fireball', 'table_81': 'Warrior',
     'table_104': 'Metegol Continental', 'table_116': 'Jupiter', 'table_117': 'Supra', 'table_127': 'Guardian', 'table_128': 'El Cotorro', 'table_129': 'Tecno', 'table_130': 'Ullrich Sport', 'table_131': 'Beast'}
     miza = dictionary[st_mize]
-   
-    return {'ime': ime.group(1), 'drzava': drzava.group(1), 'leto': leto.group(1), 'rang': rang.group(1), 'miza': miza}
+    minuli_rangi = {'InterCCup': 'ECL', 'ITSF Masters': 'World Cup', 'WCHs': 'World Cup'}
+    if rang in minuli_rangi:
+        rang = minuli_rangi[rang]
+    return {'ime': ime.group(1), 'drzava': drzava.group(1), 'leto': leto.group(1), 'rang': rang, 'miza': miza}
 
 
 
