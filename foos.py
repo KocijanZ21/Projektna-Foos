@@ -14,7 +14,7 @@ csv_filename = 'foos.csv'
 
 def download_url_to_string(url):
     """Funkcija kot argument sprejme niz in poskusi vrniti vsebino te spletne
-    strani kot niz. V primeru, da med izvajanje pride do napake vrne None.
+    strani kot niz.
     """
     try:
         # del kode, ki morda sproži napako
@@ -41,7 +41,7 @@ def save_string_to_file(text, directory, filename):
     return None
 
 
-# Definirajte funkcijo, ki prenese glavno stran in jo shrani v datoteko.
+# Funkcija prenese glavno stran in jo shrani v datoteko.
 
 
 def save_frontpage(page, directory, filename):
@@ -64,10 +64,8 @@ def read_file_to_string(directory, filename):
     return text
 
 
-# Definirajte funkcijo, ki sprejme niz, ki predstavlja vsebino spletne strani,
-# in ga razdeli na dele, kjer vsak del predstavlja en turnir. To storite s
-# pomočjo regularnih izrazov, ki označujejo začetek in konec posameznega
-# oglasa. Funkcija naj vrne seznam nizov.
+# Funkcija sprejme niz, ki predstavlja vsebino spletne strani,
+# in ga razdeli na dele, kjer vsak del predstavlja en turnir. Funkcija vrne seznam nizov.
 
 
 def page_to_tournaments(page_content):
@@ -78,8 +76,8 @@ def page_to_tournaments(page_content):
     return re.findall(vzorec, page_content, flags = re.DOTALL)
 
 
-# Definirajte funkcijo, ki sprejme niz, ki predstavlja turnir, in izlušči
-# podatke o imenu, času in državi dogajanja rangu ter mizi.
+# Funkcija, sprejme niz, ki predstavlja turnir, in izlušči
+# podatke o imenu, času in državi dogajanja, rangu ter mizi.
 
 
 def get_dict_from_tournament(block):
@@ -103,9 +101,9 @@ def get_dict_from_tournament(block):
 
 
 
-# Definirajte funkcijo, ki sprejme ime in lokacijo datoteke, ki vsebuje
+# Funkcija sprejme ime in lokacijo datoteke, ki vsebuje
 # besedilo spletne strani, in vrne seznam slovarjev, ki vsebujejo podatke o
-# vseh oglasih strani.
+# vseh turnirjih.
 
 
 def tournaments_from_file(filename, directory):
@@ -137,20 +135,14 @@ def write_csv(fieldnames, rows, directory, filename):
     return
 
 
-# Definirajte funkcijo, ki sprejme neprazen seznam slovarjev, ki predstavljajo
-# podatke iz oglasa mačke, in zapiše vse podatke v csv datoteko. Imena za
-# stolpce [fieldnames] pridobite iz slovarjev.
+# Funkcija sprejme neprazen seznam slovarjev, ki predstavljajo
+# podatke turnirja, in zapiše vse podatke v csv datoteko.
 
 
 def write_ctournaments_to_csv(tournaments, directory, filename):
     """Funkcija vse podatke iz parametra "tournaments" zapiše v csv datoteko podano s
-    parametroma "directory"/"filename". Funkcija predpostavi, da so ključi vseh
-    slovarjev parametra tournaments enaki in je seznam tournaments neprazen."""
-    # Stavek assert preveri da zahteva velja
-    # Če drži se program normalno izvaja, drugače pa sproži napako
-    # Prednost je v tem, da ga lahko pod določenimi pogoji izklopimo v
-    # produkcijskem okolju
-    ##assert tournaments and (all(j.keys() == tournaments[0].keys() for j in tournaments))
+    parametroma "directory"/"filename"."""
+    
     write_csv(tournaments[0].keys(), tournaments, directory, filename)
 
 
@@ -165,12 +157,12 @@ def main(redownload=True, reparse=True):
 
     if redownload:
         for leto in range(2004, 2024):        
-            # definirajte URL glavne strani turnirjev v organizaciji ITSF
+            # URL glavne strani turnirjev v organizaciji ITSF za vsako leto
             foos_frontpage_url = f'https://www.tablesoccer.org/tournaments?sort_by=field_date_value&sort_order=ASC&field_tour_value={leto}'
             
             # ime datoteke v katero bomo shranili glavno stran
             frontpage_filename = f'itsf_{leto}.html'
-            
+             
 
     # Najprej v lokalno datoteko shranimo glavno stran
             save_frontpage(foos_frontpage_url, foos_directory, frontpage_filename)
@@ -182,7 +174,8 @@ def main(redownload=True, reparse=True):
             frontpage_filename = f'itsf_{leto}.html'
             tournamentss = tournaments_from_file(frontpage_filename, foos_directory)
             alltournaments.extend(tournamentss)
-    # Podatke shranimo v csv datoteko
+    # Podatke vsakega leta shranimo v seznam, ki ga dodajamo v večji seznam vseh turnirjev.
+    # Podatke shranimo v csv datoteko.
         write_ctournaments_to_csv(alltournaments, foos_directory, csv_filename)
     # Dodatno: S pomočjo parametrov funkcije main omogoči nadzor, ali se
     # celotna spletna stran ob vsakem zagon prenese (četudi že obstaja)
