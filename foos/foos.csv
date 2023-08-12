@@ -3,7 +3,7 @@ WCS Roberto Sport 2004,Italy,2004,WS,Roberto Sport
 WCS Bonzini 2004,France,2004,WS,Bonzini
 WCS Eurosoccer 2004,Belgium,2004,WS,Euro Soccer
 WCS Tornado 2004,United States,2004,WS,Tornado
-World Championships 2005,Italy,2004,WCHs,Multitable
+World Championships 2005,Italy,2004,World Cup,Multitable
 Germany Open,Germany,2005,Masters,Bonzini
 Hungarian Master Series ,Hungary,2005,Masters,Garlando
 Canadian Master series ,Canada,2005,Masters,Multitable
@@ -15,7 +15,7 @@ WCS Garlando 2005,Austria,2005,WS,Garlando
 WCS Tornado 2005,United States,2005,WS,Tornado
 Oxford Open,United Kingdom,2005,Masters,Garlando
 Tokyo Open,Japan,2005,Masters,Tornado
-World Championships 2006,Italy,2005,WCHs,Multitable
+World Championships 2006,Italy,2005,World Cup,Multitable
 Florida State Championships,United States,2006,Pro Tour,Bonzini
 Cambridge Open,United Kingdom,2006,Pro Tour,Euro Soccer
 Evry Open,France,2006,Pro Tour,Bonzini
@@ -47,7 +47,7 @@ WCS Tornado 2006,United States,2006,WS,Tornado
 Czech Open,Czech Republic,2006,Masters,Rosengart
 Japan Open,Japan,2006,International,Multitable
 2006 Bart O&#039;Hearn,United States,2006,Pro Tour,Tornado
-World Championships 2007,Italy,2006,WCHs,Multitable
+World Championships 2007,Italy,2006,World Cup,Multitable
 Open de Montreuil sur Mer,France,2006,Pro Tour,Bonzini
 Austrian Championships,Austria,2006,Pro Tour,Garlando
 National Foosball Challenge,,2006,Pro Tour,Tornado
@@ -106,7 +106,7 @@ WCS Tornado 2007,United States,2007,WS,Tornado
 "$10,000 Bart O&#039;Hearn Memorial",United States,2007,Pro Tour,Tornado
 Romanian Multitable Championships,Romania,2007,Pro Tour,Multitable
 33rd Annual NC State Foosball Championships,United States,2007,Masters,Bonzini
-World Championships 2008,Italy,2007,WCHs,Multitable
+World Championships 2008,Italy,2007,World Cup,Multitable
 Austrian Championships 2007,Austria,2007,Pro Tour,Garlando
 Open de Montreuil sur Mer,France,2007,Pro Tour,Bonzini
 India Open,India,2007,Masters,Roberto Sport
@@ -159,7 +159,7 @@ Japan Open 2008,Japan,2008,International,Tornado
 2008 Florida State Foosball Championships,United States,2008,Pro Tour,Tornado
 9th Annual Bart O&#039;Hearn Celebration,United States,2008,Pro Tour,Tornado
 Great Pumpkin Classic,United States,2008,Masters,Tornado
-World Championships 2009,France,2009,WCHs,Multitable
+World Championships 2009,France,2009,World Cup,Multitable
 Montreuil sur Mer Open,France,2008,Pro Tour,Bonzini
 Polish Garlando Championships,Poland,2008,Masters,Garlando
 3er Campeonato Nacional Abierto Clasificatorio 2008,,2008,Pro Tour,Garlando
@@ -212,7 +212,7 @@ Japan Open,Japan,2009,International,Tornado
 WCS Roberto Sport 2009,Czech Republic,2009,WS,Roberto Sport
 10th Annual Bart O&#039; Celebration,United States,2009,Masters,Tornado
 I. Sardi Pro Tour,Hungary,2009,Pro Tour,Sardi
-WORLD CHAMPIONSHIPS 2010,France,2010,WCHs,Multitable
+WORLD CHAMPIONSHIPS 2010,France,2010,World Cup,Multitable
 Montreuil sur mer Open,France,2009,Masters,Bonzini
 Austrian Championships 2009,Austria,2009,Masters,Garlando
 India Open,India,2009,Masters,Fireball
@@ -271,7 +271,7 @@ Danish Open,Denmark,2010,Masters,Bonzini
 Japan Open,Japan,2010,International,Tornado
 Slovenian Open,Slovenia,2010,Pro Tour,Roberto Sport
 European Fireball Open,United Kingdom,2010,Masters,Fireball
-WORLD CHAMPIONSHIPS 2011,France,2011,WCHs,Multitable
+WORLD CHAMPIONSHIPS 2011,France,2011,World Cup,Multitable
 Final Española de Futbolin 2010,Spain,2010,Pro Tour,Multitable
 Montreuil sur Mer Open,France,2010,Masters,Bonzini
 2010 Polish Roberto Sport Championship,Poland,2010,Pro Tour,Roberto Sport
@@ -330,7 +330,7 @@ Sofia Grand Masters,,2011,Masters,Roberto Sport
 12th Annual Bart O&#039;Hearn Celebration,United States,2011,Masters,Tornado
 Romanian Bonzini Open,Romania,2011,Pro Tour,Bonzini
 European Fireball Open 2011,United Kingdom,2011,Masters,Fireball
-WORLD CHAMPIONSHIPS 2012,France,2012,WCHs,Multitable
+WORLD CHAMPIONSHIPS 2012,France,2012,World Cup,Multitable
 Final de España de Futbolín 2011,Spain,2011,Masters,Roberto Sport
 XI Polish International Championship Garlando 2011,Poland,2011,Masters,Garlando
 Montreuil sur Mer Open,France,2011,Pro Tour,Bonzini
@@ -379,7 +379,7 @@ Western Open,United States,2012,Pro Tour,Fireball
 Romanian Bonzini Masters,Romania,2012,Masters,Bonzini
 Fireball World Championship Series,Chinese Taipei,2012,WS,Fireball
 Moscow Cup,ROC,2012,Pro Tour,Garlando
-WORLD CHAMPIONSHIPS 2013,France,2013,WCHs,Multitable
+WORLD CHAMPIONSHIPS 2013,France,2013,World Cup,Multitable
 Montreuil sur Mer Open,France,2012,Pro Tour,Bonzini
 Austrian National Championships,Austria,2012,Pro Tour,Garlando
 Mistrzostwa Polski Garlando 2012,Poland,2012,Pro Tour,Garlando
@@ -425,12 +425,12 @@ EUROPEAN CHAMPIONS CUP 2013,Germany,2013,ECL,Multitable
 Leonhart World Championship Series,Germany,2013,WS,Leonhart
 Australian Open,Australia,2013,Masters,Fireball
 VI Sofia Grand Masters,,2013,Masters,Roberto Sport
-Pro Tour Madrid Supra,Spain,2013,Pro Tour,Leonhart
 Saint-Petersburg Open,ROC,2013,Masters,Garlando
+Pro Tour Madrid Supra,Spain,2013,Pro Tour,Leonhart
 Roberto Sport International - 2013,Poland,2013,International,Roberto Sport
 Romanian Bonzini Masters,Romania,2013,Masters,Bonzini
 Fireball World Championship Series,,2013,WS,Fireball
-WORLD CHAMPIONSHIPS 2014,France,2013,WCHs,Multitable
+WORLD CHAMPIONSHIPS 2014,France,2013,World Cup,Multitable
 Austrian National Championships,Austria,2013,Masters,Garlando
 Montreuil sur Mer Open,France,2013,Masters,Bonzini
 Mistrzostwa Polski Garlando 2013,Poland,2013,Masters,Garlando
@@ -633,7 +633,7 @@ TSS Goldach Pro Tour,Switzerland,2016,Pro Tour,Garlando
 Pro Tour Segré 2016,France,2016,Pro Tour,Bonzini
 Reutlingen Pro Tour,Germany,2016,Pro Tour,Leonhart
 International Series Hall of Fame Classic,United States,2016,International,Tornado
-InterContinental Cup 2016,United States,2016,InterCCup,Multitable
+InterContinental Cup 2016,United States,2016,ECL,Multitable
 18th Czech Championships 2016,Czech Republic,2016,Pro Tour,Rosengart
 Floresta Tour,Argentina,2016,Pro Tour,Metegol Continental
 Majeur de Québec,Canada,2016,Pro Tour,Bonzini
@@ -694,7 +694,7 @@ Riga Foos JAM | 2016,Latvia,2016,Masters,Garlando
 Darlington Open,United Kingdom,2016,Pro Tour,Garlando
 Master Series Moscow Summer open 2016,ROC,2016,Masters,Garlando
 Deutsch-Französische Tischfussball Tage,Germany,2016,Masters,Bonzini
-ITSF Masters 2016,Germany,2016,ITSF Masters,Multitable
+ITSF Masters 2016,Germany,2016,World Cup,Multitable
 World Series by Leonhart 2016,Germany,2016,WS,Leonhart
 Malaysia Foosball Open 2016,Malaysia,2016,Masters,Fireball
 Nebraska State Championship,United States,2016,Masters,Tornado
@@ -849,8 +849,8 @@ Slovak Masters 2017/18,Slovakia,2017,Masters,Rosengart
 Pro Tour Moscow open 2017,ROC,2017,Pro Tour,Garlando
 Rotterdam Foosball Open,Netherlands,2017,Masters,Leonhart
 Australian Open,Australia,2017,Masters,Fireball
-Balkan Cup Serbia 2017,Serbia,2017,Pro Tour,Roberto Sport
 Czech LEONHART Open VI,Czech Republic,2017,Masters,Leonhart
+Balkan Cup Serbia 2017,Serbia,2017,Pro Tour,Roberto Sport
 The London Open,United Kingdom,2017,Pro Tour,Garlando
 Ukrainian Open,Ukraine,2017,Masters,Garlando
 Beijing Foosball Pro Tour 2017,China,2017,Pro Tour,Guardian
@@ -875,8 +875,8 @@ Q8foosball ITSF Tour,Kuwait,2018,Pro Tour,Tornado
 Polish Leonhart Championships,Poland,2018,Masters,Leonhart
 Czech LEONHART Championship 2018,Czech Republic,2018,Masters,Leonhart
 Hall of Fame Classic,United States,2018,International,Tornado
-ITSF World Masters,United States,2018,ITSF Masters,Multitable
-Inter Continental Cup 2018,United States,2018,InterCCup,Multitable
+ITSF World Masters,United States,2018,World Cup,Multitable
+Inter Continental Cup 2018,United States,2018,ECL,Multitable
 Storm Riders Open,Bulgaria,2018,Pro Tour,Roberto Sport
 ChampFoos Bonzini Open,United Kingdom,2018,Pro Tour,Bonzini
 Seiersberg Open ,Austria,2018,Pro Tour,Garlando
@@ -1206,6 +1206,7 @@ Pro Tour Ottweiler 2023 - ITSF ProTour 2023,Germany,2023,Pro Tour,Bonzini
 ITSF World Series by Leonhart - ITSF World Series Tour 2023,Germany,2023,WS,Leonhart
 2023 Tornado Championships - ITSF International Tour 2023,United States,2023,International,Tornado
 Brasil Open de Pebolim - ITSF Pro Tour 2023,Brazil,2023,Pro Tour,Undefined
+Lithuanian Cup ITSF Pro Tour - ITSF Pro Tour 2023,Lithuania,2023,Pro Tour,Garlando
 VIANA DO CASTELO - ITSF Master Tour 2023,Portugal,2023,Masters,Roberto Sport
 3 Nations Paralympic - ITSF International Tour 2023,Italy,2023,International,Roberto Sport
 Balkan Cup Croatia 2023 - ITSF Pro Tour 2023,Croatia,2023,Pro Tour,Multitable

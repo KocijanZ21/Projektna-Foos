@@ -145,6 +145,32 @@ def write_ctournaments_to_csv(tournaments, directory, filename):
     
     write_csv(tournaments[0].keys(), tournaments, directory, filename)
 
+def download_files():
+    for leto in range(2004, 2024):        
+        # URL glavne strani turnirjev v organizaciji ITSF za vsako leto
+        foos_frontpage_url = f'https://www.tablesoccer.org/tournaments?sort_by=field_date_value&sort_order=ASC&field_tour_value={leto}'
+        
+        # ime datoteke v katero bomo shranili glavno stran
+        frontpage_filename = f'itsf_{leto}.html'
+            
+    # Najprej v lokalno datoteko shranimo glavno stran
+        save_frontpage(foos_frontpage_url, foos_directory, frontpage_filename)
+
+def reparse_files():
+    # Iz lokalne (html) datoteke preberemo podatke
+    # Podatke preberemo v lepšo obliko (seznam slovarjev)
+        alltournaments = []
+        for leto in range(2004,2024):
+            frontpage_filename = f'itsf_{leto}.html'
+            tournamentss = tournaments_from_file(frontpage_filename, foos_directory)
+            alltournaments.extend(tournamentss)
+    # Podatke vsakega leta shranimo v seznam, ki ga dodajamo v večji seznam vseh turnirjev.
+    # Podatke shranimo v csv datoteko.
+        write_ctournaments_to_csv(alltournaments, foos_directory, csv_filename)
+
+
+
+
 
 # Celoten program poženemo v glavni funkciji
 
@@ -156,33 +182,14 @@ def main(redownload=True, reparse=True):
     """
 
     if redownload:
-        for leto in range(2004, 2024):        
-            # URL glavne strani turnirjev v organizaciji ITSF za vsako leto
-            foos_frontpage_url = f'https://www.tablesoccer.org/tournaments?sort_by=field_date_value&sort_order=ASC&field_tour_value={leto}'
-            
-            # ime datoteke v katero bomo shranili glavno stran
-            frontpage_filename = f'itsf_{leto}.html'
-             
-
-    # Najprej v lokalno datoteko shranimo glavno stran
-            save_frontpage(foos_frontpage_url, foos_directory, frontpage_filename)
+        download_files()
     if reparse:
-    # Iz lokalne (html) datoteke preberemo podatke
-    # Podatke preberemo v lepšo obliko (seznam slovarjev)
-        alltournaments = []
-        for leto in range(2004,2024):
-            frontpage_filename = f'itsf_{leto}.html'
-            tournamentss = tournaments_from_file(frontpage_filename, foos_directory)
-            alltournaments.extend(tournamentss)
-    # Podatke vsakega leta shranimo v seznam, ki ga dodajamo v večji seznam vseh turnirjev.
-    # Podatke shranimo v csv datoteko.
-        write_ctournaments_to_csv(alltournaments, foos_directory, csv_filename)
+        reparse_files()
+
+
+        
     # Dodatno: S pomočjo parametrov funkcije main omogoči nadzor, ali se
     # celotna spletna stran ob vsakem zagon prenese (četudi že obstaja)
     # in enako za pretvorbo
-
-    
-
-
 if __name__ == '__main__':
     main(False)
