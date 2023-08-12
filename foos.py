@@ -2,6 +2,7 @@ import csv
 import os
 import requests
 import re
+import matplotlib as plt
 
 ###############################################################################
 # Najprej definirajmo nekaj pomožnih orodij za pridobivanje podatkov s spleta.
@@ -169,6 +170,15 @@ def reparse_files():
         write_ctournaments_to_csv(alltournaments, foos_directory, csv_filename)
 
 
+def drzave_to_others(tabela):
+    dict_drzav = {'others': 0}
+    for drzava in tabela.keys():
+        st = tabela[drzava]
+        if st < 20:
+            dict_drzav['others'] += st
+        else:
+            dict_drzav[drzava] = st
+    return dict_drzav
 
 
 
@@ -187,7 +197,7 @@ def main(redownload=True, reparse=True):
         reparse_files()
 
 
-        
+
     # Dodatno: S pomočjo parametrov funkcije main omogoči nadzor, ali se
     # celotna spletna stran ob vsakem zagon prenese (četudi že obstaja)
     # in enako za pretvorbo
