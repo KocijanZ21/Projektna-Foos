@@ -186,8 +186,8 @@ def drzave_to_others(tabela):
 
 def main(redownload=True, reparse=True):
     """Funkcija izvede celoten del pridobivanja podatkov:
-    1. Oglase prenese iz bolhe
-    2. Lokalno html datoteko pretvori v lepšo predstavitev podatkov
+    1. Turnirje prenese z uradne strani
+    2. Lokalne html datoteke pretvori v lepšo predstavitev podatkov
     3. Podatke shrani v csv datoteko
     """
 
